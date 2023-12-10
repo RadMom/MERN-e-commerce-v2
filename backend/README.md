@@ -105,3 +105,38 @@ This file sets up a Node.js application using Express for creating a server, Mon
 
 5. **Export**:
     - Exports the configured product routes using Express Router.
+
+##### `orderRoutes`
+
+1. **Express Router Setup**:
+
+    - Initializes an instance of Express Router specifically for managing order-related routes.
+
+2. **Controllers Import**:
+
+    - Imports functions from the `orderControllers` module responsible for handling order-related operations such as creating orders, editing orders, deleting orders, and retrieving orders by various criteria.
+
+3. **Middleware for Authorization**:
+
+    - Imports authentication and authorization middleware from `authMiddleware`. `protectRoute` ensures route protection, and `admin` allows access only to admin users.
+
+4. **Route Definitions**:
+
+    - **User Routes**:
+
+        - `GET /`: Retrieves orders for a specific user. Requires authentication (`protectRoute`).
+
+        - `GET /:orderId`: Retrieves a specific order by its ID. Requires authentication (`protectRoute`).
+
+        - `POST /`: Creates a new order. Requires authentication (`protectRoute`).
+
+    - **Admin-Only Routes**:
+
+        - `GET /admin/orders`: Retrieves all orders. Requires authentication (`protectRoute`) and admin access (`admin`).
+
+        - `PUT /admin/:orderId`: Edits a specific order by its ID. Requires authentication (`protectRoute`) and admin access (`admin`).
+
+        - `DELETE /admin/:orderId`: Deletes a specific order by its ID. Requires authentication (`protectRoute`) and admin access (`admin`).
+
+5. **Export**:
+    - Exports the configured order routes using Express Router.
