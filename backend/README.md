@@ -139,4 +139,84 @@ This file sets up a Node.js application using Express for creating a server, Mon
         - `DELETE /admin/:orderId`: Deletes a specific order by its ID. Requires authentication (`protectRoute`) and admin access (`admin`).
 
 5. **Export**:
+
     - Exports the configured order routes using Express Router.
+
+    ### Authentication Middleware
+
+The application uses middleware for user authentication and authorization based on JSON Web Tokens (JWT). Below are the two main middleware functions:
+
+#### `protectRoute`
+
+-   Purpose: Protects routes requiring authentication.
+-   Checks if the request contains a valid JWT token in the authorization header.
+-   Verifies and decodes the JWT token using the `jsonwebtoken` library and the provided secret (`JWT_SECRET`).
+-   Retrieves the user associated with the token's ID from the database using the `User` model.
+-   If successful, sets the user in the request object (`req.user`) for further middleware or route usage.
+-   Handles various JWT-related errors such as invalid tokens or expired tokens.
+
+#### `admin`
+
+-   Purpose: Checks if the user is an admin.
+-   Verifies if the user exists in the request object (`req.user`) and has the `isAdmin` property set to `true`.
+-   If the user is an admin, allows access to the next middleware or route.
+-   Handles internal server errors if encountered during the process.
+
+**Usage**:
+
+-   `protectRoute` is used to secure routes requiring user authentication.
+-   `admin` is used to restrict access to admin-only routes.
+
+These middleware functions provide authentication and authorization capabilities within the Express application.
+
+### Error Handling Middleware
+
+The application employs an error handling middleware to manage and respond to errors that occur during request processing. Below is the implementation:
+
+#### `errorHandler`
+
+-   Purpose: Handles errors within the Express application.
+-   Logs errors for tracking purposes, if a logging system is available.
+-   Determines the appropriate status code for the error. If the error object includes a `status` property, it uses that status; otherwise, defaults to `500 Internal Server Error`.
+-   Structures the error response based on customizable needs, generally including an error message.
+-   In non-production environments, includes the stack trace in the error response for debugging purposes.
+-   Sends the error response with the determined status code and error message.
+
+**Usage**:
+This middleware function is integrated into the Express application to handle errors that occur during request processing. It provides a standardized format for error responses and aids in debugging during development.
+
+The customization of error responses can be adjusted based on specific project requirements.
+
+### ObjectId Validation Module
+
+The application includes a module to validate MongoDB ObjectIDs using Mongoose.
+
+#### `validateObjectId`
+
+-   Purpose: Validates whether a given string is a valid MongoDB ObjectID.
+-   Uses the `isValidObjectId` method from Mongoose to check the validity of the provided ID.
+-   Returns a boolean indicating whether the ID is a valid ObjectID.
+
+**Usage**:
+
+-   `validateObjectId(id)`: Accepts a string `id` parameter and returns `true` if it's a valid MongoDB ObjectID; otherwise, returns `false`.
+-   Integrated into the application to ensure the correctness of provided ObjectIDs, especially for MongoDB interactions.
+
+This module provides a straightforward utility for validating ObjectIDs within the context of MongoDB operations.
+
+### JWT Token Creation Module
+
+This module contains functionality to generate JSON Web Tokens (JWT) used for authentication and authorization in the application.
+
+#### `createToken`
+
+-   Purpose: Generates a JWT token using the provided user ID (`_id`) and a secret key (`JWT_SECRET` from environment variables).
+-   Utilizes the `jsonwebtoken` library's `sign` method to create a JWT token with a payload containing the user ID (`_id`).
+-   Sets the expiration of the token to one day (`"1d"`), after which the token becomes invalid.
+
+**Usage**:
+
+-   `createToken(_id)`: Accepts a user ID `_id` parameter and generates a JWT token with a one-day expiration.
+-   Typically used during user authentication processes to generate tokens for authorized access to protected routes.
+
+This module is essential for creating JWT tokens used in user authentication and session management within the application.
