@@ -77,7 +77,25 @@ This file sets up a Node.js application using Express for creating a server, Mon
 5. **Export**:
     - Exports the defined user routes configured using Express Router.
 
+```markdown
+### Authentication Middleware
+
+The following middleware functions are designed for user authentication and authorization using JSON Web Tokens (JWT) in an Express application:
+
+#### `protectRoute`
+
+-   Verifies the presence and validity of a JWT token from the request's authorization header.
+-   Responds with a 401 status and a corresponding message if the token is missing or invalid.
+-   Extracts the user ID from the token payload, fetches the user from the database using the ID, and attaches the user object to the request (`req.user`). Then, it proceeds to the next middleware (`next()`).
+
+#### `admin`
+
+-   Checks if the `req.user` object exists and if the user has an `isAdmin` property set to `true`.
+-   Allows access to the next middleware (`next()`) if the user is an admin.
+-   Responds with a 401 status and a message indicating that the user is not authorized as an admin if the user is not an admin.
+
+**Usage**:
+These middleware functions can be used to control access to routes based on user authentication and authorization levels, allowing or denying access to specific endpoints in an Express application.
 ```
 
-
-```
+Feel free to integrate this content into your `readme.md` file. If you need any adjustments or additional information, let me know!
