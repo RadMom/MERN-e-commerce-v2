@@ -15,3 +15,13 @@
    Verify the installed dependencies in the package.json file.
    1.5 Cleaning Up Frontend Files:
    Action: Perform required cleanup tasks in your frontend files.
+
+    1.6 Now we can move on backend. We create new folder with name backend. Then we open new terminal and write npm init
+    Now we have package.json file
+    After that in the terminal we write :
+    npm i bcrypt cors dotenv express jsonwebtoken mongoose
+    to install dependencies which we will need
+    We need one more but it will be in devDependencies. We write in the terminal :
+    npm install --save-dev nodemon
+
+    We are ready with Project Initialization
