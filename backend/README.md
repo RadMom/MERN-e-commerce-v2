@@ -77,25 +77,31 @@ This file sets up a Node.js application using Express for creating a server, Mon
 5. **Export**:
     - Exports the defined user routes configured using Express Router.
 
-```markdown
-### Authentication Middleware
+##### `productRoutes`
 
-The following middleware functions are designed for user authentication and authorization using JSON Web Tokens (JWT) in an Express application:
+1. **Express Router Setup**:
 
-#### `protectRoute`
+    - Initializes an instance of Express Router specifically for managing product-related routes.
 
--   Verifies the presence and validity of a JWT token from the request's authorization header.
--   Responds with a 401 status and a corresponding message if the token is missing or invalid.
--   Extracts the user ID from the token payload, fetches the user from the database using the ID, and attaches the user object to the request (`req.user`). Then, it proceeds to the next middleware (`next()`).
+2. **Controllers Import**:
 
-#### `admin`
+    - Imports functions from the `productsController` module responsible for handling product-related operations such as getting all products, getting a single product, creating, updating, and deleting products.
 
--   Checks if the `req.user` object exists and if the user has an `isAdmin` property set to `true`.
--   Allows access to the next middleware (`next()`) if the user is an admin.
--   Responds with a 401 status and a message indicating that the user is not authorized as an admin if the user is not an admin.
+3. **Middleware for Authorization**:
 
-**Usage**:
-These middleware functions can be used to control access to routes based on user authentication and authorization levels, allowing or denying access to specific endpoints in an Express application.
-```
+    - Imports authentication and authorization middleware from `authMiddleware`. `protectRoute` ensures route protection and `admin` allows access only to admin users.
 
-Feel free to integrate this content into your `readme.md` file. If you need any adjustments or additional information, let me know!
+4. **Route Definitions**:
+
+    - **Public Routes**:
+
+        - `GET /`: Retrieves all products.
+        - `GET /:productId`: Retrieves a specific product by its ID.
+
+    - **Admin-Only Routes**:
+        - `POST /`: Creates a new product. Requires authentication (`protectRoute`) and admin access (`admin`).
+        - `PUT /:productId`: Updates a specific product by its ID. Requires authentication (`protectRoute`) and admin access (`admin`).
+        - `DELETE /:productId`: Deletes a specific product by its ID. Requires authentication (`protectRoute`) and admin access (`admin`).
+
+5. **Export**:
+    - Exports the configured product routes using Express Router.
