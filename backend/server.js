@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv").config();
 
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./middlewares/errorHandler");
 //routes
 const orderRoutes = require("./routes/orderRoutes");
 const productRoutes = require("./routes/productRoutes");
@@ -19,9 +19,9 @@ app.use(express.json()); //In old version is body-parser.Server can accept json 
 app.use(express.urlencoded({ extended: false }));
 
 //routes
-app.use("/products", productRoutes);
+// app.use("/products", productRoutes);
 app.use("/user", userRoutes);
-app.use("/orders", orderRoutes);
+// app.use("/orders", orderRoutes);
 
 //errorHandler
 app.use(errorHandler);
@@ -29,7 +29,7 @@ app.use(errorHandler);
 //mogoose setup
 mongoose.set("strictQuery", false);
 mongoose
-    .connect(URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(URL)
     .then((result) =>
         app.listen(5000, () => {
             console.log(`db connected and server is live on port: ${port}...`);

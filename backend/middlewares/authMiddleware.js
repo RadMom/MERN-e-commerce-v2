@@ -17,11 +17,11 @@ const protectRoute = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         // Find user based on decoded token's ID
-        const user = await User.findById(decoded._id);
+        const user = await User.findById(decoded._id).select("-password");
 
         // If user not found, return authentication failure
         if (!user) {
-            return res.status(401).json({ message: "User not found!" });
+            return res.status(401).json({ error: { message: "User not found!" } });
         }
 
         // Set user in request object for further middleware/routes to use
@@ -31,11 +31,11 @@ const protectRoute = async (req, res, next) => {
         console.error(error);
         // Handle different JWT-related errors
         if (error.name === "JsonWebTokenError") {
-            return res.status(401).json({ message: "Invalid token!" });
+            return res.status(401).json({ error: { message: "Invalid token!" } });
         } else if (error.name === "TokenExpiredError") {
-            return res.status(401).json({ message: "Token expired!" });
+            return res.status(401).json({ error: { message: "Token expired!" } });
         } else {
-            return res.status(401).json({ message: "Authentication failed!" });
+            return res.status(401).json({ error: { message: "Authentication failed!" } });
         }
     }
 };

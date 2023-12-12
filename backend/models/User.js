@@ -27,11 +27,26 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
+// Pre-save hook to hash the password before saving
+userSchema.pre("save", async function (next) {
+    // Hash the password only if it's modified or is new
+    if (this.isModified("password") || this.isNew) {
+        try {
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(this.password, salt);
+            this.password = hashedPassword;
+        } catch (error) {
+            return next(error);
+        }
+    }
+    next();
+});
+
 //static signup method. We use signup function in userControllers.
 //It can be whatever we want- userSchema.statics.pepito but we must use the same name(pepito) in userController.js
 userSchema.statics.signup = async function (username, email, password) {
     if (!username || !email || !password) {
-        throw Error("Please provide name, email and password");
+        throw Error("Please provide username, email and password");
     }
 
     //Check if user already exists
@@ -40,10 +55,7 @@ userSchema.statics.signup = async function (username, email, password) {
         throw Error("Email already exists");
     }
 
-    //Hash the password and create user
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const user = await this.create({ username, email, password: hashedPassword });
+    const user = await this.create({ username, email, password });
 
     return user;
 };
