@@ -19,7 +19,7 @@ app.use(express.json()); //In old version is body-parser.Server can accept json 
 app.use(express.urlencoded({ extended: false }));
 
 //routes
-// app.use("/products", productRoutes);
+app.use("/products", productRoutes);
 app.use("/user", userRoutes);
 // app.use("/orders", orderRoutes);
 

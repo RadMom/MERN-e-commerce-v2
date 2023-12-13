@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const { isValidObjectId, validateObjectId } = require("../middlewares/validateObjectId");
+const { validateObjectId } = require("../middlewares/validateObjectId");
 const { createToken } = require("../middlewares/createToken");
 
 //login user

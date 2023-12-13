@@ -1,4 +1,3 @@
-````markdown
 ### `getUsers`
 
 In the context of paginated results, `parseInt(page)` is used to ensure that the `page` parameter obtained from the query string is converted into an integer.
@@ -16,7 +15,6 @@ const pageInteger = parseInt(pageString); // Convert string to integer
 console.log(pageString + 1); // Output: "21" (string concatenation)
 console.log(pageInteger + 1); // Output: 3 (integer addition)
 ```
-````
 
 Using `parseInt()` helps avoid unintended string concatenation when working with numeric values obtained from query parameters. In the case of pagination, it ensures that mathematical operations performed on the `page` parameter are accurate and behave as expected.
 
@@ -39,8 +37,3 @@ For instance:
 -   `parseInt("10", 10)` explicitly specifies that `"10"` should be parsed as a base-10 number, regardless of any leading zeros.
 
 So, `parseInt(page, 10) || 1` ensures that `page` is parsed as a decimal number and defaults to `1` if the parsing fails (if `page` is undefined, `NaN`, or a non-numeric string that can't be parsed to an integer). This helps in setting a default value for `page` if it's not provided or if it's not a valid number.
-
-```
-
-
-```
