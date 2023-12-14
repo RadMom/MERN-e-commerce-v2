@@ -70,7 +70,7 @@ const getOneProduct = async (req, res, next) => {
         validateObjectId(_id); // Assuming this function validates if _id is a valid ObjectId
 
         // Find the product by its unique ID (_id)
-        const product = await Product.findById(_id);
+        const product = await Product.findById(_id).select("-creator");
 
         // If no product is found, throw a 404 error
         if (!product) {
