@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7px;
+}
+.title {
+    align-self: center;
+}
+.main-nav {
+    display: flex;
+    margin-bottom: 7px;
+}
+.main-links-container a {
+    text-decoration: none;
+    padding: 7px;
+    margin-right: 5px;
+}
+
+.main-links-container a:hover {
+    background-color: green;
+}
+
+.main-links-container a.active {
+    background-color: green;
+}
+
+/* user-Info */
+.user-info {
+    margin-left: auto;
+}
+
+/* cart */
+.cart {
+    margin-left: 7px;
+}
