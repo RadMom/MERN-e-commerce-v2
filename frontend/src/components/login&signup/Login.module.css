@@ -1,0 +1,88 @@
+.login {
+    align-self: center;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    max-width: 600px;
+    background-color: var(--clr-main-700);
+    border-radius: 20px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 10px;
+}
+.login h2 {
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+.input-group label {
+    font-size: 1.3em;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+}
+.input-group input {
+    font-size: 1.2em;
+
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 2px solid var(--clr-main-300);
+    border-radius: 10px;
+}
+.input-group input::placeholder {
+    color: white;
+    font-size: 0.8em;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 0 5px var(--clr-main-700);
+}
+
+.msg {
+    display: none;
+}
+
+/* button */
+.login-button {
+    font-size: 1.3em;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.login-button:hover,
+.login-button:focus {
+    background-color: var(--clr-main-500);
+}
+
+/* errors */
+.input-group.error input {
+    font-size: 1.3em;
+    box-shadow: 0 0 10px red;
+    background-color: rgba(255, 0, 64, 0.973);
+}
+
+.input-group.error .msg {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 7px;
+    color: red;
+}
+.error {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 7px;
+    color: red;
+}

@@ -3,6 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --clr-main-100: rgb(161, 152, 152);
+    --clr-main-300: rgba(161, 152, 152, 0.7);
+    --clr-main-500: rgba(161, 152, 152, 0.5);
+    --clr-main-700: rgba(161, 152, 152, 0.3);
+
+    --clr-error: red;
+
+    font-size: 16px;
+}
+
 #root {
     display: flex;
     flex-direction: column;
