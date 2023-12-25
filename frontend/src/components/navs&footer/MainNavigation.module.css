@@ -24,6 +24,10 @@ header {
     background-color: green;
 }
 
+.mobile {
+    display: none;
+}
+
 /* user-Info */
 .user-info {
     margin-left: auto;
@@ -32,4 +36,24 @@ header {
 /* cart */
 .cart {
     margin-left: 7px;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile {
+        display: block;
+    }
+    .nav-menu-icon {
+        display: block;
+        height: 2rem;
+        width: 3rem;
+        cursor: pointer;
+        align-self: center;
+        margin-bottom: 7px;
+    }
+    .main-links-container {
+        display: none;
+    }
+    .show-mobile-main-menu {
+        display: block;
+    }
 }

@@ -26,7 +26,7 @@ const ProductsList = (props) => {
         }
         const productInfo = {
             id: product._id,
-            name: product.name,
+            title: product.title,
             price: product.price,
             stock: product.stock,
         };

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../redux/products/productsApi";
 import Pagination from "../components/Pagination";
 import ProductsList from "../components/products/ProductsList";
+import FiltersOptionsTable from "../components/navs&footer/FiltersOptionsTable";
 
 function ProductsPage() {
     console.log("ProductsPage");
@@ -23,6 +24,7 @@ function ProductsPage() {
 
     return (
         <div>
+            <FiltersOptionsTable />
             <ProductsList products={products} />
             <Pagination
                 totalPages={productsPagination.totalPages}
