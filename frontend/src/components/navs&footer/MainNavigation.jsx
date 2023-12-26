@@ -13,6 +13,7 @@ const MainNavigation = () => {
     const navigate = useNavigation();
 
     const userInfo = useSelector((state) => state.auth.userInfo);
+    const cartTotalQuantity = useSelector((state) => state.cart.totalQuantity);
 
     const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -81,7 +82,7 @@ const MainNavigation = () => {
                     <NavLink to="/cart" className={classes.cart}>
                         <FaCartShopping />
 
-                        <span className={classes.badges}>8</span>
+                        <span className={classes.badges}>{cartTotalQuantity}</span>
                     </NavLink>
                 </div>
             </nav>
