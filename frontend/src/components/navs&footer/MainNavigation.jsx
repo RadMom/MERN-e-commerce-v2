@@ -26,7 +26,7 @@ const MainNavigation = () => {
     };
 
     return (
-        <header>
+        <header className={classes["main-header"]}>
             <h1 className={classes.title}>E-commerce v2</h1>
             <nav className={classes["main-nav"]}>
                 <div className={classes.mobile}>
@@ -64,24 +64,21 @@ const MainNavigation = () => {
                     >
                         About
                     </NavLink>
-                </div>
-                <div className={classes["user-info"]}>
-                    {userInfo ? (
-                        <div>
-                            <p>{userInfo.email}</p>
-                            <button onClick={logoutHandler}>Logout</button>
-                        </div>
-                    ) : (
-                        <div>
+
+                    <div className={classes["user-info"]}>
+                        {userInfo ? (
+                            <>
+                                <p>{userInfo.email}</p>
+                                <button onClick={logoutHandler}>Logout</button>
+                            </>
+                        ) : (
                             <NavLink to="/login">Login</NavLink>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
-
                 <div className={classes.cart}>
-                    <NavLink to="/cart" className={classes.cart}>
-                        <FaCartShopping />
-
+                    <NavLink to="/cart">
+                        <FaCartShopping className={classes.icon} />
                         <span className={classes.badges}>{cartTotalQuantity}</span>
                     </NavLink>
                 </div>

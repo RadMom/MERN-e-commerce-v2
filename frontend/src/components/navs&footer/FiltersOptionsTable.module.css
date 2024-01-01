@@ -1,0 +1,19 @@
+.filters-container {
+    display: flex;
+}
+
+.filters-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filters-table tbody tr td {
+    border: 1px solid black;
+    padding: 7px;
+}
+
+@media screen and (max-width: 768px) {
+    .products-table-tr td:not(:first-child) {
+        display: none;
+    }
+}

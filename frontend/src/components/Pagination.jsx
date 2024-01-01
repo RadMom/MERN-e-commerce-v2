@@ -3,7 +3,7 @@ import classes from "./Pagination.module.css";
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
     const pages = [];
-    console.log(totalPages, currentPage);
+
     for (let i = 1; i <= totalPages; i++) {
         pages.push(
             <button

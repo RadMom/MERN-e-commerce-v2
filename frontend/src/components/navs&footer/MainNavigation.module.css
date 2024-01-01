@@ -1,7 +1,8 @@
-header {
+.main-header {
     display: flex;
     flex-direction: column;
     margin-bottom: 7px;
+    background-color: var(--clr-main-700);
 }
 .title {
     align-self: center;
@@ -10,35 +11,68 @@ header {
     display: flex;
     margin-bottom: 7px;
 }
+.main-links-container {
+    display: flex;
+    flex-grow: 1;
+}
+/* user-Info */
+.user-info {
+    margin-left: auto;
+    align-self: center;
+}
+
 .main-links-container a {
     text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
     padding: 7px;
     margin-right: 5px;
 }
 
 .main-links-container a:hover {
-    background-color: green;
+    transform: scale(1.2);
+    font-weight: bolder;
+    /* background-color: green; */
 }
 
 .main-links-container a.active {
-    background-color: green;
+    background-color: var(--clr-green);
 }
 
 .mobile {
     display: none;
 }
 
-/* user-Info */
-.user-info {
-    margin-left: auto;
-}
-
 /* cart */
 .cart {
-    margin-left: 7px;
+    align-self: center;
+}
+
+.cart a {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.badges {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.icon {
+    display: block;
+    height: 2rem;
+    width: 3rem;
+    cursor: pointer;
+    align-self: center;
 }
 
 @media screen and (max-width: 768px) {
+    .main-nav {
+        display: block;
+        position: relative;
+    }
     .mobile {
         display: block;
     }
@@ -54,6 +88,17 @@ header {
         display: none;
     }
     .show-mobile-main-menu {
-        display: block;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .user-info {
+        margin: 0;
     }
 }

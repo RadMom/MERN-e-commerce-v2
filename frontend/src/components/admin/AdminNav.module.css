@@ -1,0 +1,20 @@
+.admin-nav ul {
+    display: flex;
+    margin-bottom: 10px;
+
+    list-style-type: none;
+}
+
+.admin-nav ul li {
+    padding: 7px;
+    text-decoration: none;
+}
+
+.admin-nav ul li a {
+    color: black;
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.admin-nav ul li a:hover {
+}

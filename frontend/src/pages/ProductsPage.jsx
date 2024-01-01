@@ -13,14 +13,15 @@ function ProductsPage() {
     const productsData = useSelector((state) => state.products); // Accessing products state from Redux store
     const products = productsData.products; // Extracting products array from state
     const productsPagination = productsData.pagination; // Extracting pagination info from state
-    console.log(productsPagination);
 
     useEffect(() => {
+        console.log("USEEFFECT");
         // Fetch products when the component mounts or pagination changes
         dispatch(getProducts(null, productsPagination.currentPage)); // Dispatching the action to get products
-    }, [dispatch, productsPagination.currentPage]); // Dependency on dispatch and current page
+    }, [dispatch]); // Dependency on dispatch and current page
 
     const handlePageChange = (page) => {
+        console.log(page);
         // Function to handle page change in pagination
         dispatch(getProducts(null, page)); // Dispatching the action to get products for a specific page
     };

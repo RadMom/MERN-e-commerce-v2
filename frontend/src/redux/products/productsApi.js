@@ -6,18 +6,18 @@ const productsBaseUrl = "http://localhost:5000/";
 //GET ALL PRODUCTS
 export const getProducts = (filters, page) => async (dispatch) => {
     dispatch(setIsLoading(true));
-    console.log(filters);
+
     try {
         const { data } = await axios.get(productsBaseUrl + "products", {
             params: {
                 page: page || 1,
-                limit: filters?.itemsPerPage || 10,
+                limit: filters?.itemsPerPage || 8,
                 category: filters?.category || "",
                 sortBy: filters?.sortBy || "",
                 search: filters?.search || "",
             },
         });
-        console.log(data);
+
         dispatch(setProducts(data.products));
         dispatch(setProductsPagination({ ...data.pagination }));
         // dispatch(
@@ -34,5 +34,15 @@ export const getProducts = (filters, page) => async (dispatch) => {
                     : "An unexpected error ..."
             )
         );
+    }
+};
+
+//GET SINGLE PRODUCT
+export const getSingleProduct = async (productId) => {
+    try {
+        const response = await axios.get(`${productsBaseUrl}products/${productId}`);
+        return response.data.product;
+    } catch (error) {
+        throw new Error(error.response?.data?.error || "An unexpected error ...");
     }
 };

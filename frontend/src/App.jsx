@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setLogout } from "./redux/auth/authSlice";
 
 //components
@@ -15,7 +16,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import AdminPage from "./pages/admin/AdminPage";
-import { useDispatch } from "react-redux";
+import AdminLayout from "./layouts/AdminLayout";
 
 function App() {
     const dispatch = useDispatch();
@@ -24,6 +25,8 @@ function App() {
         const expirationTime = localStorage.getItem("expirationTime");
         if (expirationTime) {
             const currentTime = new Date().getTime();
+            console.log(currentTime);
+            console.log(expirationTime);
             if (currentTime > expirationTime) {
                 dispatch(setLogout());
             }
@@ -54,7 +57,16 @@ function App() {
                     element: <UserProfilePage />,
                 },
                 //admin routes
-                { path: "admin", element: <AdminPage /> },
+                {
+                    path: "admin",
+                    element: <AdminLayout />,
+                    // children: [
+                    //     { index: true, element: <AdminPage /> },
+                    //     { path: "orders", element },
+                    //     { path: "users", element },
+                    //     { path: "products", element },
+                    // ],
+                },
             ],
         },
     ]);

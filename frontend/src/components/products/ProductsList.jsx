@@ -70,7 +70,7 @@ const ProductsList = (props) => {
                             </header>
                             <div className={classes["price-and-stock"]}>
                                 {/* Product price and stock */}
-                                <p className={classes.price}>${product.price}</p>
+                                <p className={classes.price}>Price: ${product.price}</p>
                                 <p className={classes.stock}>Stock: {product.stock}</p>
                             </div>
                             <div className={classes.actions}>

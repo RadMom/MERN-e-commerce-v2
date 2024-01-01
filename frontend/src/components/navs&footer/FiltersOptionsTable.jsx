@@ -1,19 +1,20 @@
 import React, { useState } from "react";
+import classes from "./FiltersOptionsTable.module.css";
 
 const FiltersOptionsTable = () => {
     const filtersOptions = {
+        Search: "",
         Category: ["test1", "test2", "test3", "test4"],
-        sortBy: ["price", "name"],
-        productsPerPage: [5, 10, 15],
-        search: "",
+        "Sort By": ["price", "name"],
+        "Per Page": [8, 16, 24],
     };
 
     // State to store selected values for each filter
     const [selectedOptions, setSelectedOptions] = useState({
+        Search: "",
         Category: "",
         sortBy: "",
         productsPerPage: "",
-        search: "",
     });
 
     // Function to handle changes in the selected options
@@ -22,14 +23,14 @@ const FiltersOptionsTable = () => {
     };
 
     return (
-        <div>
-            <table>
+        <div className={classes["filters-container"]}>
+            <table className={classes["filters-table"]}>
                 <tbody>
-                    {Object.keys(filtersOptions).map((key) => (
-                        <tr key={key}>
-                            <td>{key}</td>
-                            <td>
-                                {key === "search" ? (
+                    <tr className={classes["products-table-tr"]}>
+                        {Object.keys(filtersOptions).map((key) => (
+                            <td key={key}>
+                                <label>{key}</label>
+                                {key === "Search" ? (
                                     <input
                                         type="text"
                                         value={selectedOptions[key]}
@@ -48,8 +49,8 @@ const FiltersOptionsTable = () => {
                                     </select>
                                 )}
                             </td>
-                        </tr>
-                    ))}
+                        ))}
+                    </tr>
                 </tbody>
             </table>
             <button onClick={() => console.log(selectedOptions)}>Submit</button>

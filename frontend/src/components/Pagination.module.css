@@ -1,0 +1,14 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: scale(1.5);
+}
